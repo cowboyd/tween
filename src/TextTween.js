@@ -47,9 +47,9 @@ function TextTween(obj,property,txt,func,duration){
 	this.init(new Object(),'x',func,0,txt.length,duration);
 }
 //cowboyd@thefrontside.net
-OpacityTween.prototype = new Tween();
-OpacityTween.prototype.constructor = Tween;
-OpacityTween.superclass = Tween.prototype;
+TextTween.prototype = new Tween();
+TextTween.prototype.constructor = Tween;
+TextTween.superclass = Tween.prototype;
 
 var o = TextTween.prototype;
 o.targetObject = {};
