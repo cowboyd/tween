@@ -1,0 +1,54 @@
+<project name='tween' basedir="." default="minified">
+
+	<property name="lib" value="lib"/>
+	<property name="compressor.jar" value="${lib}/yuicompressor-2.4.1.jar"/>
+	<property name="build" value="build"/>
+	<property name="jsfile" value="${build}/tween.js"/>
+	<property name="minfile" value="${build}/tween.min.js"/>
+	<property name="headerfile" value="header.js.in"/>
+	<property name="footerfile" value="footer.js.in"/>
+	<property name="src" value="src"/>
+	<target name="init">
+		<mkdir dir="${build}"/>
+	</target>
+	<target name="compile" depends="init">
+	<script language="javascript">
+		var java = Packages.java;
+		var SOURCES = ['Tween', 'ColorTween', 'OpacityTween', 'TextTween', 'Sequence', 'Parallel']
+		function copy(input, out) {
+			for (var b = input.read(); b != -1; b = input.read()) {
+				out.write(b)
+			}
+		}
+
+		function puts(msg) {
+			java.lang.System.out.println(msg)
+		}
+
+
+		var out = new java.io.FileOutputStream(jsfile)
+		var header = new java.io.FileInputStream(headerfile)
+		var footer = new java.io.FileInputStream(footerfile)
+
+		copy(header, out)
+
+		for (var i in SOURCES) {
+			var source = new java.io.FileInputStream(src + "/" + SOURCES[i] + ".js")
+			copy(source, out)
+		}
+		copy(footer, out)
+
+		out.close()
+
+	</script>
+</target>
+<target name="minified" depends="compile">
+	<java jar="${compressor.jar}" fork="true">
+		<arg line="-o ${minfile} ${jsfile}"/>
+	</java>
+</target>
+
+<target name="clean">
+	<delete dir="${build}"/>
+</target>
+</project>

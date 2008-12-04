@@ -1,0 +1,31 @@
+
+**Disclaimer**
+
+I am not the original author of this software. I've taken this excellent package by Philippe Maegerman
+and merely built it into a single file which does not pollute the main javascript namespace, and
+can be optionally minified.
+
+
+** Requirements **
+
+Apache Ant  1.7 or greater
+Java 1.6 or greater
+
+** Enhancements **
+
+All tweening classes are under the main name space Tween
+e.g.
+
+var t = new Tween()
+var c = new Tween.ColorTween()
+var o = new Tween.OpacityTween()
+var t = new Tween.TextTween()
+var s = new Tween.Sequence()
+var p = new Tween.Parallel()
+
+
+I've left the source files themselves more or less in tact
+
+** Compilation **
+
+run ant from the main directory.

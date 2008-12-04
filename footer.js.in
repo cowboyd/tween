@@ -1,0 +1,9 @@
+
+Tween.ColorTween = ColorTween
+Tween.OpacityTween = OpacityTween
+Tween.TextTween = TextTween
+Tween.Sequence = Sequence
+Tween.Parallel = Parallel
+
+return Tween
+})()
